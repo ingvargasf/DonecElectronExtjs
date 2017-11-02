@@ -122,8 +122,8 @@ Ext.define('Admin.view.paciente.Paciente',{
                         },
                         {
                             xtype: 'textfield',
-                            name:"Cedula",
-                            emptyText:"cedula"
+                            name:"documento",
+                            emptyText:"Documento"
                         },
                         {
                            xtype: 'button',
