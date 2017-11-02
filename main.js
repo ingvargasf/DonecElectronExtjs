@@ -38,7 +38,7 @@ function createWindow(options,callback){
 		protocol:'file',
 		slashes:true
 	}));*/
-	win.loadURL('http://localhost:3000/'+(options.url || ''));
+	win.loadURL(Constants.URL_BASE+(options.url || ''));
 	
 	//Open devtools
 	win.webContents.openDevTools();
