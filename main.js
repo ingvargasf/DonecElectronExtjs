@@ -14,7 +14,7 @@ var app_config = app.getAppPath()+'/server/app.json';
 global.APP_PATH = app.getAppPath();
 let win
 
-<<<<<<< HEAD
+
 function createWindow(options,callback){
 
 	options = options || {};
@@ -29,14 +29,7 @@ function createWindow(options,callback){
 		}
 	}
 	win = new BrowserWindow(config);
-=======
-function createWindow(){
-	win = new BrowserWindow({
-		icon:__dirname+'/assests/icon.png',
-		width:800,
-		height:600
-	});
->>>>>>> ee868d777be0b4941377f5f47b106e53f609292b
+
 	win.loadURL(url.format({
 		pathname:path.join(directory,options.url || 'public/index.html'),
 		protocol:'file',
@@ -47,23 +40,18 @@ function createWindow(){
 
 	win.on("closed",()=>{
 		win = null;
-<<<<<<< HEAD
 		app.quit();
-=======
->>>>>>> ee868d777be0b4941377f5f47b106e53f609292b
 	})
 	const ses = win.webContents.session;
 
 	win.once('ready-to-show', () => {
 	 	win.show();
 	});
-<<<<<<< HEAD
+
 	if(callback!=undefined){
 		callback(win);
 	}
 	return win;
-=======
->>>>>>> ee868d777be0b4941377f5f47b106e53f609292b
 }
 
 app.on("ready",function(){
@@ -100,7 +88,6 @@ app.on("window-all-closed",()=>{
 })
 app.on("active",()=>{
 	if(win===null){
-<<<<<<< HEAD
 		//createWindow()
 	}
 })
@@ -108,8 +95,3 @@ exports.directory = directory;
 exports.Msg = function(config){
 	dialog.showMessageBox(win,config);
 };
-=======
-		createWindow()
-	}
-})
->>>>>>> ee868d777be0b4941377f5f47b106e53f609292b

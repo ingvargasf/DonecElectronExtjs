@@ -32,24 +32,16 @@
     "string-capitalize": "^1.0.1"
   },
   "scripts": {
-<<<<<<< HEAD
     "start": "electron .",
     "pack": "build --dir",
     "dist": "build",
     "electron": "electron ."
-=======
-    "start": "electron ."
->>>>>>> ee868d777be0b4941377f5f47b106e53f609292b
   },
   "author": {
     "name": "Fabian Vargas",
     "email": "f_varga@hotmail.com"
   },
-<<<<<<< HEAD
-  "repository": {
-=======
   "repository":{
->>>>>>> ee868d777be0b4941377f5f47b106e53f609292b
     "type": "git",
     "url": "git://github.com/ingvargasf/Donec.git"
   },
