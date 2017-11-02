@@ -123,6 +123,7 @@ module.exports = function(app,io,db){
 									}
 									
 									delete params.password;
+									delete params.re_password;
 									for(var key in params){
 										if(!(key in obj["user"])){
 											obj[key] = params[key];

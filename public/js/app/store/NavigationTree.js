@@ -14,8 +14,8 @@ Ext.define('Admin.store.NavigationTree', {
                 text: 'Inicio',
                 iconCls: 'x-fa fa-desktop',
                 rowCls: 'nav-tree-badge nav-tree-badge-new',
-                viewType: 'home',
-                routeId: 'home', // routeId defaults to viewType
+                viewType: 'paciente',
+                routeId: 'paciente', // routeId defaults to viewType
                 leaf: true
             },
             {
@@ -25,15 +25,7 @@ Ext.define('Admin.store.NavigationTree', {
                 routeId: 'users',
                 hidden:true,
                 leaf: true
-            },
-            {
-                text: 'Infracciones',
-                iconCls: 'fa fa-tasks',
-                viewType: 'infraccion',
-                routeId: 'infraccion',
-                hidden:true,
-                leaf: true
-            },
+            }
 
             /*,
                 {

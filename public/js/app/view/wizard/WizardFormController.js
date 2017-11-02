@@ -122,9 +122,9 @@ Ext.define('Admin.view.wizard.WizardFormController', {
                     valid=false;
                 }
             });
+            //volButton.hide();
+            sigButton.hide();
             if(valid){
-                volButton.hide();
-                sigButton.hide();
                 finishButton.show();
                 model.set("payloads",params);
             }else{
@@ -138,6 +138,14 @@ Ext.define('Admin.view.wizard.WizardFormController', {
                     }                    
                 });
             }
+        }else{
+            if(activeIndex >0){
+                volButton.show();
+            }else{
+                volButton.hide();
+            }
+            sigButton.show();
+            finishButton.hide();
         }
         console.info(button.id=='finishButton',button.id);
         if(button.id=='finishButton'){

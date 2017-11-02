@@ -67,7 +67,7 @@ Ext.define('Admin.view.authentication.PasswordReset', {
                 {
                     xtype: 'component',
                     html: '<div style="text-align:right">' +
-                        '<a href="#ptz" class="link-forgot-password">'+
+                        '<a href="#paciente" class="link-forgot-password">'+
                             'Atrás</a>' +
                         '</div>',
                     /*listeners:{

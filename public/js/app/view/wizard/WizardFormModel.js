@@ -7,7 +7,5 @@ Ext.define('Admin.view.wizard.WizardFormModel', {
         atEnd: false
     },
     stores:{
-	    organismostore: Ext.create('Admin.store.infraccion.organismoStore'),
-        dispositivostore: Ext.create('Admin.store.infraccion.dispositivoStore')
     }
 });

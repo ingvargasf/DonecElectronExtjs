@@ -6,6 +6,9 @@ const isDev = () => process.env.NODE_ENV === 'development';
 process.env['APP_PATH'] = app.getAppPath();
 const directory = isDev()?process.cwd().concat('/app'):process.env.APP_PATH;
 
+const ElectronOnline = require('electron-online')
+const connection = new ElectronOnline();
+
 var server = require('./server/app');
 var Constants = require("./server/helpers/Constants.js");
 var Helper = require("./server/helpers/helper");
@@ -13,15 +16,15 @@ var app_config = app.getAppPath()+'/server/app.json';
 
 global.APP_PATH = app.getAppPath();
 let win
-
+let ready = false;
 
 function createWindow(options,callback){
 
 	options = options || {};
 	var config = {
 		icon:path.join(directory,'/assests/icon.png'),
-		width:options.width || 800,
-		height:options.height || 600
+		width:options.width || 1366,
+		height:options.height || 768
 	};
 	for(var key in options){
 		if(!(key in config)){
@@ -30,11 +33,13 @@ function createWindow(options,callback){
 	}
 	win = new BrowserWindow(config);
 
-	win.loadURL(url.format({
-		pathname:path.join(directory,options.url || 'public/index.html'),
+	/*win.loadURL(url.format({
+		pathname:path.join(directory,options.url),
 		protocol:'file',
 		slashes:true
-	}));
+	}));*/
+	win.loadURL(Constants.URL_BASE+(options.url || ''));
+	
 	//Open devtools
 	win.webContents.openDevTools();
 
@@ -58,15 +63,44 @@ app.on("ready",function(){
 
 	Helper.readFile(app_config)
 	.then(function(config){
+
 		server(config)
 		.then(function(){
-			createWindow();
+
+			console.log("\t-->",Helper.isEmpty(config))
+			if(!Helper.isEmpty(config)){
+				createWindow({
+					url:'public/js/index.html#login'
+				},function(){
+					ready = true;
+				});
+			}else{
+				console.log("La Aplicación está lista para ser Instalada.");
+				
+				connection.on('online', () => {
+				  console.log('App is online!')
+				  console.log("La Aplicación está lista para ser Instalada.");
+				})
+				 
+				connection.on('offline', () => {
+				  	console.log('App is offline!');
+				  	if(!ready){
+					  	createWindow({url:'public/js/index.html#offline'});
+					}
+				});
+			  	if(!ready){
+					createWindow({url:'public/js/index.html#wizard'},function(win){
+					  	ready=true;
+				  	});
+			    }
+			}
+			console.log("Aplicación Iniciada.",config)
+
 		},function(err){
-			dialog.showMessageBox(win,{
-				title:'Error',
-				message:app_config
-			});
-		});	
+			
+		});
+
+
 	},function(err){
 	    if(err){
 	    	createWindow({

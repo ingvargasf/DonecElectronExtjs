@@ -5,7 +5,7 @@ Ext.define('Admin.view.main.MainModel', {
     data: {
     	socket:{},
         instaled:false,
-    	defaultToken:'home',
+    	defaultToken:'paciente',
         currentView: null,
         picture:'resources/images/user-profile/2.png',
         user:localStorage.user,

@@ -19,6 +19,6 @@ Ext.define('Admin.model.paciente.Paciente', {
     ],
     proxy: {
        type: 'rest',
-       url : Constants.URL_INFRACCIONES
+       url : Constants.URL_PACIENTE
     }
 });

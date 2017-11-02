@@ -160,6 +160,7 @@ module.exports = function(app,db,io){
 		router.route(route_name).get(list);//Listar y Buscar
 		router.route(route_name).post(save);//crear registro nuevo y actualizar
 		router.route(route_name).put(update);//crear registro nuevo y actualizar
+		router.route(route_name+'/:_id').put(update);//crear registro nuevo y actualizar
 		router.route(route_name+':_id').get(findById);//busca un registro por Id
 		router.route(route_name+'/:_id').get(findById);//busca un registro por Id
 		router.route(route_name+'/:_id').delete(remove);//Eliminar registro por Id

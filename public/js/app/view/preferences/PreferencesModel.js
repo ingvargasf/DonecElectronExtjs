@@ -5,7 +5,5 @@ Ext.define('Admin.view.preferences.PreferencesModel', {
         name: 'Admin'
     },
     stores:{
-    	organismostore: Ext.create('Admin.store.infraccion.organismoStore'),
-        dispositivostore: Ext.create('Admin.store.infraccion.dispositivoStore')
     }
 });

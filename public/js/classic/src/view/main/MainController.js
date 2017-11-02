@@ -19,7 +19,7 @@ Ext.define('Admin.view.main.MainController', {
        global["sync"] = pressed;
        console.log("sync: ",pressed);
        try{
-        socket.emit("onsync",pressed);   
+            socket.emit("onsync",pressed);   
        }catch(err){
             console.log("Error Socket: ",err);        
        }
@@ -29,7 +29,7 @@ Ext.define('Admin.view.main.MainController', {
 
        Ext.create('Ext.menu.Menu', {
            width: 200,
-           margin: '10px 10px 10px 0px',
+           margin: '0px 10px 10px 0px',
            cls:'x-menu',
            padding:'0',
            bodyStyle:'border-radius:7px;',
@@ -47,23 +47,23 @@ Ext.define('Admin.view.main.MainController', {
                selector:el,
                handler:'onProfile'
            },*/
-           Ext.create('Admin.view.profile.Social',{
+           /*Ext.create('Admin.view.profile.Social',{
                autoScroll:true
-           }),
+           }),*/
            {
                text: 'Cambiar Contraseña',
                iconCls:'fa fa-key',
                handler:'onChangePass'
-           },{
+           },/*{
                text: 'Configurar',
                iconCls:'fa fa-cog',
                handler:'onPreferences'
-           },{
+           },*/{
                text: 'Salir',
                iconCls:'fa fa-sign-out',
                handler:'onLogout'
            }]
-       }).showBy(Ext.get(el),'c-bl',[-40,140]);
+       }).showBy(Ext.get(el),'c-bl',[-10,50]);
     },
     onPreferences:function(self){
         Ext.create('Ext.window.Window', {

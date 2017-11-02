@@ -22,7 +22,7 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
                     localStorage.user_id =res.user._id;
                     localStorage.username =res.user.username;
                     //location.reload();
-                    me.redirectTo('ptz', true);
+                    me.redirectTo('paciente', true);
                 },
                 failure: function(f, action) {
                     Ext.Msg.show({

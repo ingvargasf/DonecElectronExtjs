@@ -10,7 +10,7 @@ Ext.define('Admin.view.authentication.Login', {
         'Ext.button.Button'
     ],
 
-    title: 'Inciar - Falcon System',
+    title: 'Inciar - Donec',
     defaultFocus: 'authdialog', // Focus the Auth Form to force field focus as well
 
     items: [
