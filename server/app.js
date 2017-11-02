@@ -121,7 +121,7 @@ module.exports = function(config){
 		//Crear Instancia de Objeto Administrador de base de datos
 		db = ManagerDB.createManagerDB();
 
-		app.use("/public",express.static("public"));
+		app.use("/public",express.static(path.join(global.APP_PATH,"public")));
 		// app.use("/app",session_middleware);
 		// app.use("/app",online_middleware);
 		var routes = require("./routes");
