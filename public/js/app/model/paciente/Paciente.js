@@ -7,6 +7,7 @@ Ext.define('Admin.model.paciente.Paciente', {
         },
         "nombre",
         "apellido",
+        "documento",
         "direccion",
         "localidad",
         "provincia",

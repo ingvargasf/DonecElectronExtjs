@@ -31,6 +31,10 @@ Ext.define('Admin.view.paciente.pacienteForm', {
 				    emptyText:       "Apellido",
 				},
 				{
+				    name: "documento",
+				    emptyText:       "Documento",
+				},
+				{
 				    name: "direccion",
 				    emptyText:       "Direccion",
 				},
