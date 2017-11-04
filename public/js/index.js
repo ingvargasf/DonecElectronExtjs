@@ -1,14 +1,14 @@
 
 const remote = require("electron").remote;
 const main = remote.require('./main.js');
-
+const path = require("path");
 var Helper = remote.require("./server/helpers/helper.js");
 var Constants = remote.require("./server/helpers/Constants.js");
 
 global.BASE_PATH=Constants.URL_BASE;
 global.APP_PATH = main.directory;
 
-var app_config = global.APP_PATH+'/server/app.json';
+var app_config = path.join(global.APP_PATH,'server','app.json');
 //Esta funcion incializa el proceso de renderización del Cliente, se utiliza en: /public/app/index.html
 function __init(){
 	

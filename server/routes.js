@@ -32,8 +32,8 @@ var Helper = require("./helpers/helper");
 
 module.exports = function(app,db,io){
 	
-	const public_routes =global.APP_PATH+'/server/routes';
-	const app_routes = global.APP_PATH+'/server/routes/app';
+	const public_routes =path.join(global.APP_PATH,'server','routes');
+	const app_routes = path.join(global.APP_PATH,'server','routes','app');
 	var routes_map = {};
 	
 	global.router = router;
@@ -46,7 +46,8 @@ module.exports = function(app,db,io){
 			prefix = prefix || '';
 			function readFiles(base_path,prefix){
 				fs.readdirSync(base_path).forEach(function(file){
-					file = global.APP_PATH+'/server/routes'+prefix+'/'+file;
+					file = path.join(global.APP_PATH,'server','routes',prefix,file);
+					console.log("file: ",file);
 					var ext = path.extname(file);
 					var route;
 					if(ext!=null && ext=='.js'){
@@ -176,7 +177,7 @@ module.exports = function(app,db,io){
 		var schema = model.getSchema();
 		var lang = schema.lang;
 		var route_name = pluralize(lang || "es",name);
-		route_name = path.join('/',route_name);
+		route_name = '/'+route_name;
 		routes_map["paths"] = routes_map["paths"] || [];
 		if(!routeExist(name)){
 			routes_map["paths"].push({"name":name,"path":route_name});
@@ -194,7 +195,7 @@ module.exports = function(app,db,io){
 	loadRoutes(public_routes)
 	.then(function(){
 		// console.log("rutas publicas cargadas.")
-		loadRoutes(app_routes,"/app")
+		loadRoutes(app_routes,"app")
 		.then(function(){
 			// console.log("routes privadas cargadas.");
 		});

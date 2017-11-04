@@ -1,11 +1,13 @@
 var md5 = require("md5");
 var Helper = require("../helpers/helper");
-var app_config = global.APP_PATH+'/server/app.json';
+var path = require("path");
+
 //const service = require("../services/index");
 module.exports = function(app,io,db){
 	//Evento Constructor User - Se dispara cuando el Schema user ha sido instanciado.
 	db.on("user",function(schema){
 		//Extendemos la funcionalidad del Schema para usar en el Modelo User.
+		
 		schema.statics.login = function(params){
 
 			var self = this;
@@ -174,7 +176,9 @@ module.exports = function(app,io,db){
 	app.post("/config",function(req,res){
 
 		var params = req.body;
+		
 
+		console.log("file config::",app_config)
 		Helper.readFile(app_config)
 		.then(function(config){
 

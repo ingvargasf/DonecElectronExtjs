@@ -36,7 +36,7 @@ exports.createManagerDB = function(options,callback) {
 function ManagerDB(options){
 
 	var self = this;
-	this.url = global.APP_PATH+'/server/database/config.json';
+	this.url = path.join(global.APP_PATH,'server','database','config.json');
 	self.models = {};
 	self.schemas = {};
 	self.autoRefesh = true;

@@ -12,9 +12,9 @@ const connection = new ElectronOnline();
 var server = require('./server/app');
 var Constants = require("./server/helpers/Constants.js");
 var Helper = require("./server/helpers/helper");
-var app_config = app.getAppPath()+'/server/app.json';
-
 global.APP_PATH = app.getAppPath();
+var app_config = path.join(global.APP_PATH,'server','app.json');
+
 let win
 let ready = false;
 
@@ -22,7 +22,7 @@ function createWindow(options,callback){
 
 	options = options || {};
 	var config = {
-		icon:path.join(directory,'/assests/icon.png'),
+		icon:path.join(directory,'assests','icon.png'),
 		width:options.width || 1366,
 		height:options.height || 768
 	};
@@ -61,6 +61,7 @@ function createWindow(options,callback){
 
 app.on("ready",function(){
 
+	console.log("..\t",app_config)
 	Helper.readFile(app_config)
 	.then(function(config){
 
@@ -126,6 +127,7 @@ app.on("active",()=>{
 	}
 })
 exports.directory = directory;
-exports.Msg = function(config){
+const Msg = (config) => {
 	dialog.showMessageBox(win,config);
 };
+exports.Msg = Msg;
