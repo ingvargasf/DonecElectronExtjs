@@ -65,6 +65,7 @@ app.on("ready",function(){
 	Helper.readFile(app_config)
 	.then(function(config){
 
+		console.log()
 		server(config)
 		.then(function(){
 
@@ -100,8 +101,6 @@ app.on("ready",function(){
 		},function(err){
 			
 		});
-
-
 	},function(err){
 	    if(err){
 	    	createWindow({

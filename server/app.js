@@ -136,16 +136,19 @@ module.exports = function(config){
 		  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		  next();
 		});
+		db.connect()
+		.then(function(msg){
 
-		server.listen(port,function(){
-			db.connect()
-			.then(function(msg){
-				//iniciar utilidades de aplicación
-				init();
-				resolve(config);
-			},function(err){
-				reject(err);
+			server.listen(port,function(){
+				
 			});
+			//iniciar utilidades de aplicación
+			init();
+			resolve(config);
+		},function(err){
+			reject(err);
 		});
+
+		
 	});
 }
