@@ -46,13 +46,23 @@ function __init(){
 			console.log("sync: ",sync);
 			socket.emit("onsync",sync);
 			
-		  	console.log('App is online!')
+		  	try{
+		  		Msg.info('App is online!');
+		  	}catch(err){
+		  		console.info("App is online.")
+		  	}
+
 		});
 		socket.on('offline', (msg,status) => {
 			sync = global.sync || false;
 			console.log("sync: ",sync);
 			socket.emit("onsync",sync);
-		  	console.log('App is offline!')
+		  	try{
+		  		Msg.info('App is offline!');
+		  	}catch(err){
+		  		console.info("App is offline.")
+		  	}
+
 		});
 		console.log("Donec",global.instaled);
 

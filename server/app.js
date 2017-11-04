@@ -7,8 +7,7 @@ var url = require("url");
 var pem = require('pem');
 var cors = require('cors')
 var moment = require('moment-timezone');
-const ElectronOnline = require('electron-online')
-const connection = new ElectronOnline();
+
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var session_middleware = require("./middlewares/session");
@@ -72,7 +71,7 @@ module.exports = function(config){
 		if(!initialized){
 			io.on("connect",function(_socket){
 				config["port"] = port;
-				console.log("socket connected.");
+				console.log("socket connected!!!!");
 				global.socket = socket;
 				
 				socket = _socket;
@@ -82,7 +81,8 @@ module.exports = function(config){
 					"config":config,
 					"user":global.user
 				});
-
+				const ElectronOnline = require('electron-online')
+				const connection = new ElectronOnline();
 				var online = (connection.status=='ONLINE');
 				connection.on("online",function(msg){
 					if(!online){
@@ -97,6 +97,11 @@ module.exports = function(config){
 						socket.emit("offline","Aplicación sin conexión.",connection.status);
 						online = false;
 					}
+				});
+				socket.on("onsync",function(status){
+					console.log("Sincronización atomática.",status);
+					var msg = (status==true)?"Sincronización activada":"Sincronización desactivada.";
+					socket.emit("sync",msg,status);
 				});
 				
 			});

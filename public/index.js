@@ -34,7 +34,7 @@ function __init(){
 		});
 		
 		socket.on("message",function(msg){
-			console.log(msg);
+			Msg.info(msg);
 		});
 		
 		var sync;
@@ -45,13 +45,16 @@ function __init(){
 			console.log("sync: ",sync);
 			socket.emit("onsync",sync);
 			
-		  	console.log('App is online!')
+		  	Msg.info('Donec is online!')
 		});
 		socket.on('offline', (msg,status) => {
 			sync = global.sync || false;
 			console.log("sync: ",sync);
 			socket.emit("onsync",sync);
-		  	console.log('App is offline!')
+			Msg.info('Donec is offline!')
+		});
+		socket.on('sync', (msg,status) => {
+			Msg.info(msg);
 		});
 		console.log("Donec",global.instaled);
 

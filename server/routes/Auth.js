@@ -2,12 +2,12 @@ var md5 = require("md5");
 var Helper = require("../helpers/helper");
 var path = require("path");
 
+var app_config = path.join(global.APP_PATH,'server','app.json');
 //const service = require("../services/index");
 module.exports = function(app,io,db){
 	//Evento Constructor User - Se dispara cuando el Schema user ha sido instanciado.
 	db.on("user",function(schema){
 		//Extendemos la funcionalidad del Schema para usar en el Modelo User.
-		
 		schema.statics.login = function(params){
 
 			var self = this;
@@ -176,9 +176,7 @@ module.exports = function(app,io,db){
 	app.post("/config",function(req,res){
 
 		var params = req.body;
-		
 
-		console.log("file config::",app_config)
 		Helper.readFile(app_config)
 		.then(function(config){
 
@@ -212,6 +210,22 @@ module.exports = function(app,io,db){
 		});
 	});
 	app.get("/config",function(req,res){
+
+		db.user.listar({},function(docs){
+			if(docs.lenght>0){
+				res.send({
+					"success":(docs.lenght>0),
+					docs
+				});
+			}else{
+				res.send({
+					"success":(docs.lenght>0),
+					"msg":"El aplicativo está listo para ser istalado."
+				});
+			}
+			console.log(docs);
+		})
+		/*
 		Helper.readFile(app_config)
 		.then(function(config){
 			res.send({
@@ -225,6 +239,6 @@ module.exports = function(app,io,db){
 					"msg":"No se pudo cargar el archivo de configuración."
 				});
 			}
-		});
+		});*/
 	});
 }
